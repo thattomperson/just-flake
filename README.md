@@ -1,4 +1,5 @@
-[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://nixos.zulipchat.com/#narrow/stream/413950-nix)
+# Forked from https://github.com/juspay/just-flake
+Has additional modules support
 
 # just-flake
 

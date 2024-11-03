@@ -1,4 +1,10 @@
-{ config, name, lib, pkgs, ... }:
+{
+  config,
+  name,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options = {
@@ -8,12 +14,15 @@
       description = ''
         The justfile representing this feature.
       '';
-      apply = x:
-        if builtins.isPath x then x else
-        pkgs.writeTextFile {
-          name = "${name}.just";
-          text = x;
-        };
+      apply =
+        x:
+        if builtins.isPath x then
+          x
+        else
+          pkgs.writeTextFile {
+            name = "${name}.just";
+            text = x;
+          };
     };
     outputs.justfile = lib.mkOption {
       type = lib.types.str;
@@ -21,12 +30,9 @@
       description = ''
         The justfile code for importing this feature's justfile.
 
-        See https://just.systems/man/en/chapter_53.html
+        See https://just.systems/man/en/imports.html
       '';
-      default =
-        if config.enable
-        then "import '${builtins.toString config.justfile}'"
-        else "";
+      default = if config.enable then "import '${builtins.toString config.justfile}'" else "";
     };
   };
 }
